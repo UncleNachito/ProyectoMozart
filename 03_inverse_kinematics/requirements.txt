@@ -23,3 +23,4 @@ Werkzeug==2.0.1
 zipp==3.5.0
 pyttsx3==2.90
 Speechrecognition==3.8.1
+PyAudio==0.2.12
