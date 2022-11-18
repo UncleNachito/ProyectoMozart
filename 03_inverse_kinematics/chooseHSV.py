@@ -25,7 +25,7 @@ cv2.setTrackbarPos('VMax', 'image', 255)
 hMin = sMin = vMin = hMax = sMax = vMax = 0
 phMin = psMin = pvMin = phMax = psMax = pvMax = 0
 
-img = cv2.imread('images/foto.png')                 #FOTO A CAMBIAR
+img = cv2.imread('img/lol.png')                 #FOTO A CAMBIAR
 output = img
 waitTime = 33
 

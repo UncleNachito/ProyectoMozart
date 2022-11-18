@@ -2,6 +2,8 @@ import speech_recognition as sr
 import pyttsx3
 from move_the_robot import s as robot
 import move_the_robot as mover
+#import kinematics
+#import camara
 
 r = sr.Recognizer()
 engine = pyttsx3.init()
