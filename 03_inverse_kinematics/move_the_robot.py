@@ -5,7 +5,7 @@ from math import *
 
 ## Conectarse al robot
 
-s = RobotClient(address="192.168.0.14")  # Recuerda usar una dirección válida
+s = RobotClient(address="127.0.0.1")  # Recuerda usar una dirección válida
 s.connect()
 s.home()    # Revisa el archivo client.py para que veas qué hace esta función
 
@@ -25,16 +25,16 @@ def move_robot_to_xyz(robot, x, y, z):
 # El movimiento hacia abajo dependera de que tan largo sea el solenoide y que tan "alto" sea el boton
 # Los movimientos de lado a lado y de adelante dependera de que tan grande sea el circuito
 
-#def PresionarBotonIzq(robot, x, y, z):
-move_robot_to_xyz(s, x=40, y=0, z=90) #Primer movimiento, hacia la izq
-move_robot_to_xyz(s, x=40, y=15, z=90) #Segundo movimiento, hacia adelante
-move_robot_to_xyz(s, x=40, y=15, z=130) #Tercer movimiento, hacia abajo (para presionar)
+def PresionarBotonIzq(robot, x, y, z):
+    move_robot_to_xyz(s, x=40, y=0, z=90) #Primer movimiento, hacia la izq
+    move_robot_to_xyz(s, x=40, y=15, z=90) #Segundo movimiento, hacia adelante
+    move_robot_to_xyz(s, x=40, y=15, z=130) #Tercer movimiento, hacia abajo (para presionar)
 
-#def PresionarBotonDer(robot, x, y, z):
-move_robot_to_xyz(s, x=-40, y=0, z=90) #Primer movimiento, hacia la der
-move_robot_to_xyz(s, x=-40, y=15, z=90) #Segundo movimiento, hacia adelante
-move_robot_to_xyz(s, x=-40, y=15, z=130) #Tercer movimiento, hacia abajo (para presionar)
+def PresionarBotonDer(robot, x, y, z):
+    move_robot_to_xyz(s, x=-40, y=0, z=90) #Primer movimiento, hacia la der
+    move_robot_to_xyz(s, x=-40, y=15, z=90) #Segundo movimiento, hacia adelante
+    move_robot_to_xyz(s, x=-40, y=15, z=130) #Tercer movimiento, hacia abajo (para presionar)
 
-#def PresionarBotonCentro(robot, x, y, z):
-move_robot_to_xyz(s, x=0, y=10, z=90) #Primer movimiento, hacia adelante
-move_robot_to_xyz(s, x=0, y=10, z=130) #Segundo movimiento, hacia abajo (para presionar)
+def PresionarBotonCentro(robot, x, y, z):
+    move_robot_to_xyz(s, x=50, y=10, z=90) #Primer movimiento, hacia adelante
+    move_robot_to_xyz(s, x=50, y=10, z=130) #Segundo movimiento, hacia abajo (para presionar)
