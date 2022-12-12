@@ -71,7 +71,6 @@ while(True):
     cv2.imshow('Rectangulo', img_rect)
     cv2.imshow('Yellow', img_yel)
     """cv2.imshow('Greeb', green)
-    cv2.imshow('Red', red)
     cv2.imshow('mascara', mask)"""
 
 cap.release()
