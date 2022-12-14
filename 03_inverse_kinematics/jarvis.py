@@ -1,18 +1,20 @@
 import cv2
+import os
 import speech_recognition as sr
 import pyttsx3
 from move_the_robot import s as robot
 import move_the_robot as mover
 import camara
+import time
 
 r = sr.Recognizer()
 engine = pyttsx3.init()
 engine.setProperty("rate", 170)
 
 
-def command_move(texto):
-    camara.take_frame()
-    img = cv2.imread('my_video_frame1234.png')
+def command_move(texto, inter):
+    camara.take_frame(inter)
+    img = cv2.imread('fotos/my_video_frame{}.png'.format(inter))
     vector = camara.find_vector(img, texto)
 
     if vector == (0, 0):
@@ -21,12 +23,15 @@ def command_move(texto):
         engine.runAndWait()
     else:
         mover.move_to_button2(vector)
-        camara.lol(img)
+        return
+
+
 
 
 def speak():
     """Inicia conversación"""
     i = 1
+    j = 1
     with sr.Microphone() as source:
         while i == 1:
             print('**Say your command: Red / Yellow / Blue / Stop')
@@ -46,7 +51,9 @@ def speak():
                     print('Executing: {}'.format(text_1))
                     engine.say('Ejecutando {}'.format(text_1))
                     engine.runAndWait()
-                    command_move(text_1)
+                    command_move(text_1, j)
+                    print(j)
+                    j += 1
 
                 else:
                     print('Invalid Command ({})'.format(text_1))
