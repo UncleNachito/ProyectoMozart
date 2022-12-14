@@ -12,14 +12,17 @@ engine.setProperty("rate", 170)
 
 def command_move(texto):
     camara.take_frame()
-    img = cv2.imread('my_video_frame123.png')
+    img = cv2.imread('my_video_frame1234.png')
     vector = camara.find_vector(img, texto)
 
-    if vector == [0, 0]:
+    if vector == (0, 0):
+        print("No se encontró el color deseado en la imagen")
         engine.say("No se encontró el color deseado en la imagen")
         engine.runAndWait()
     else:
-        mover.move_to_button(robot, vector)
+        mover.move_to_button2(vector)
+        camara.lol(img)
+
 
 def speak():
     """Inicia conversación"""
@@ -39,7 +42,7 @@ def speak():
                     engine.runAndWait()
                     i = 0
 
-                elif text_1 in ['red','yellow', 'blue']:
+                elif text_1 in ['red', 'yellow', 'blue']:
                     print('Executing: {}'.format(text_1))
                     engine.say('Ejecutando {}'.format(text_1))
                     engine.runAndWait()
@@ -50,10 +53,10 @@ def speak():
                     engine.say('Comando Inválido')
                     engine.runAndWait()
 
-
             except:
                 print('Sorry could not hear')
                 engine.say('Comando no reconocido')
                 engine.runAndWait()
+
 
 speak()

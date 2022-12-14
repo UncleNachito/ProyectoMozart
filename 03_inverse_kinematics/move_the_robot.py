@@ -1,42 +1,29 @@
 import time
 from client import RobotClient
 from inverse_kinematics import position_to_dof
-from math import *
 
 ## Conectarse al robot
-
-s = RobotClient(address="127.0.0.1")  # Recuerda usar una dirección válida
+"192.168.0.13"
+s = RobotClient(address="192.168.0.13")  # Recuerda usar una dirección válida
 s.connect()
-s.home()
 
 
 ## Función para mover el robot usando cartesianas
 def move_robot_to_xyz(robot, x, y, z):
     q0, q1, q2 = position_to_dof(x, y, z)
-    robot.set_joints(q0,q1,q2)
-# move_robot_to_xyz(r, x=230, y=0, z=150) ORIGEN!
+    robot.set_joints(q0, q1, q2)
+# move_robot_to_xyz(r, x=230, y=0, z=243) ORIGEN!
 
 
-
-def move_to_button(s, vector):
-    z_button = 140
-
-    move_robot_to_xyz(s, x=vector[0], y=0, z=243)
-    time.sleep(1)
-    move_robot_to_xyz(s, x=vector[0], y=vector[1], z=243)
-    time.sleep(1)
-    move_robot_to_xyz(s, x=vector[0], y=vector[1], z=z_button)
-    time.sleep(0.49)
-    move_robot_to_xyz(s, x=-40, y=15, z=243)
-    time.sleep(1)
-    s.home()
+def home():#x:
+    move_robot_to_xyz(s, x=180, y=0, z=230)
 
 
-def move_to_button2(robot, vector):
-    x_home = 230
+def move_to_button2(vector):
+    x_home = 130
     y_home = 0
-    z_home = 243
-    z_button = 140
+    z_home = 230
+    z_button = 120
 
     path = []
 
@@ -64,7 +51,11 @@ def move_to_button2(robot, vector):
         z = z_home + (z_button - z_home) * float(i) / 10
         path.append((x, y, z))
 
+    path.append((x_home, y_home, z_home))
+
     for x, y, z in path:
         move_robot_to_xyz(s, x, y, z)
         time.sleep(0.1)
 
+
+home()
