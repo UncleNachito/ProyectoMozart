@@ -9,9 +9,9 @@ def take_frame(inter):
     i = 0
     while i == 0:
         cv2.imshow('lol', frame)
+        time.sleep(1)
         cv2.imwrite('fotos/my_video_frame{}.png'.format(inter), frame)
         i = 1
-        time.sleep(3)
     print('a')
 
 
@@ -57,8 +57,8 @@ def rect_color(frame, color):  #Red, Yellow, Blue
 def center_button(frame, color):
     img_copia = cv2.cvtColor(frame.copy(), cv2.COLOR_BGR2HSV)
     button = [(170, 105),  #Rojo
-              (165, -115),  #Amarillo
-              (185, 0)]  #Azul
+              (165, -120),  #Amarillo
+              (180, 0)]  #Azul
     if color == 'red':
         mask_rojo = cv2.inRange(img_copia, np.array([0, 255, 255]), np.array([0, 255, 255]))
         contours, hierarchies = cv2.findContours(mask_rojo, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
@@ -76,8 +76,6 @@ def center_button(frame, color):
     elif color == 'blue':
         mask_azul = cv2.inRange(img_copia, np.array([120, 255, 255]), np.array([135, 255, 255]))
         contours, hierarchies = cv2.findContours(mask_azul, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-
-        print(hierarchies)
 
         if str(type(hierarchies)) != "<class 'NoneType'>":
             return button[2]

@@ -23,7 +23,7 @@ def move_to_button2(vector):
     x_home = 130
     y_home = 0
     z_home = 230
-    z_button = 120
+    z_button = 110
 
     path = []
 
