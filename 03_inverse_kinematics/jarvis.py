@@ -1,11 +1,8 @@
 import cv2
-import os
 import speech_recognition as sr
 import pyttsx3
-from move_the_robot import s as robot
 import move_the_robot as mover
 import camara
-import time
 
 r = sr.Recognizer()
 engine = pyttsx3.init()
@@ -34,7 +31,7 @@ def speak():
     j = 1
     with sr.Microphone() as source:
         while i == 1:
-            print('**Say your command: Red / Yellow / Blue / Stop')
+            print('**Say your command: Orange / Yellow / Blue / Stop')
             engine.say("Diga un comando")
             engine.runAndWait()
             audio_1 = r.listen(source)
@@ -47,7 +44,7 @@ def speak():
                     engine.runAndWait()
                     i = 0
 
-                elif text_1 in ['red', 'yellow', 'blue']:
+                elif text_1 in ['orange', 'yellow', 'blue']:
                     print('Executing: {}'.format(text_1))
                     engine.say('Ejecutando {}'.format(text_1))
                     engine.runAndWait()

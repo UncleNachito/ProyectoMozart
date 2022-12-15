@@ -15,16 +15,16 @@ def take_frame(inter):
     print('a')
 
 
-def rect_color(frame, color):  #Red, Yellow, Blue
+def rect_color(frame, color):  #Red, Yellow, Green
     img_hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     img_copia = frame.copy()
-    range_colors = [[np.array([98, 0, 255]), np.array([179, 255, 255])],
-                    [np.array([8, 0, 255]), np.array([82, 255, 255])],
-                    [np.array([86, 0, 255]), np.array([103, 255, 255])]]
+    range_colors = [[np.array([0, 0, 175]), np.array([58, 9, 255])],
+                    [np.array([14, 11, 255]), np.array([179, 28, 255])],
+                    [np.array([77, 0, 175]), np.array([149, 255, 255])]]
 
     color_rect = [(0, 0, 255), (0, 255, 255), (255, 0, 0)]
 
-    if color == 'red':
+    if color == 'orange':
         mask = cv2.inRange(img_hsv, range_colors[0][0], range_colors[0][1])
 
         contours, hierarchies = cv2.findContours(mask, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
@@ -59,7 +59,7 @@ def center_button(frame, color):
     button = [(170, 105),  #Rojo
               (165, -120),  #Amarillo
               (180, 0)]  #Azul
-    if color == 'red':
+    if color == 'orange':
         mask_rojo = cv2.inRange(img_copia, np.array([0, 255, 255]), np.array([0, 255, 255]))
         contours, hierarchies = cv2.findContours(mask_rojo, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -87,3 +87,4 @@ def find_vector(frame, color):
     vector = center_button(rect_color(frame, color), color)
 
     return vector
+
