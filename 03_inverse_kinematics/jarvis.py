@@ -30,35 +30,34 @@ def speak():
     i = 1
     j = 1
     with sr.Microphone() as source:
-        while i == 1:
-            print('**Say your command: Orange / Yellow / Blue / Stop')
+         while i == 1:
+            print('**Diga un comando: Rojo / Amarillo / Verde / Parar')
             engine.say("Diga un comando")
             engine.runAndWait()
             audio_1 = r.listen(source)
 
             try:
-                text_1 = r.recognize_google(audio_1).lower()
-                if text_1 == 'stop':
-                    print('Bye')
+                text_1 = r.recognize_google(audio_1, language='es-CL').lower()
+                if text_1 == 'parar':
+                    print('Adios')
                     engine.say('Cerrando programa')
                     engine.runAndWait()
                     i = 0
 
-                elif text_1 in ['orange', 'yellow', 'blue']:
-                    print('Executing: {}'.format(text_1))
+                elif text_1 in ['rojo', 'amarillo', 'verde']:
+                    print('Ejecutando: {}'.format(text_1))
                     engine.say('Ejecutando {}'.format(text_1))
                     engine.runAndWait()
                     command_move(text_1, j)
-                    print(j)
                     j += 1
 
                 else:
-                    print('Invalid Command ({})'.format(text_1))
+                    print('Comando Inválido ({})'.format(text_1))
                     engine.say('Comando Inválido')
                     engine.runAndWait()
 
             except:
-                print('Sorry could not hear')
+                print('Comando no reconocido')
                 engine.say('Comando no reconocido')
                 engine.runAndWait()
 
